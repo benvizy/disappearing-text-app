@@ -1,0 +1,44 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}It's a Disappearing Boy!{% endblock %}
+
+
+{% block styles %}
+{{ super() }}
+
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="static/styles.css">
+
+<h1>Start Writing. Don't Stop. In Five Seconds, It will All Be Gone.</h1>
+
+<div class="form-group">
+    <label for="exampleFormControlTextarea1">{{ prompt }}</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+
+<p id="demo"></p>
+
+<script>
+
+function eraseText() {
+  document.getElementById("exampleFormControlTextarea1").value = "";
+}
+
+var initial;
+
+function invocation() {
+    initial = window.setTimeout(
+    eraseText, 5000);
+}
+
+  document.getElementById("exampleFormControlTextarea1").addEventListener("keyup", function() {
+    clearTimeout( initial );
+    invocation();
+  });
+</script>
+
+
+{% endblock %}
